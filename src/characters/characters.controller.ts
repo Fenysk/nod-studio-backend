@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CharactersService } from './characters.service';
 
 @Controller('characters')
@@ -6,8 +6,8 @@ export class CharactersController {
     constructor(private readonly charactersService: CharactersService) { }
 
     @Get('all')
-    getAllCharacters() {
-        return this.charactersService.getAllCharacters();
+    getAllCharacters(@Query('page') page: string) {
+        return this.charactersService.getAllCharacters(+page);
     }
 
     @Get(':id')

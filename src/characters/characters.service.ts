@@ -3,9 +3,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 @Injectable()
 export class CharactersService {
 
-    async getAllCharacters() {
+    async getAllCharacters(page: number = 1) {
         try {
-            const charactersResponse = await fetch('https://swapi.dev/api/people/');
+            const charactersResponse = await fetch(`https://swapi.dev/api/people/?page=${page}`);
             const characters = await charactersResponse.json();
 
             const filmsResponse = await fetch('https://swapi.dev/api/films/');
